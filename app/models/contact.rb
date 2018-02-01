@@ -17,7 +17,7 @@ class Contact < ApplicationRecord
   scope :valid_contact, -> {where(is_valid: true)}
 
   def find_reason
-    return self.reason = "Email invalid" if /[^0-9A-Za-z\.@]/.match(email)
+    return self.reason = "Email invalid" if !/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/.match(email)
     return self.reason = "Contact already exists" if !Contact.find_by(last_name: last_name, first_name: first_name).nil?
     return self.reason = "Email already exists" if !Contact.find_by(email: email).nil?
   end
@@ -31,6 +31,7 @@ class Contact < ApplicationRecord
     self.last_name = self.last_name.gsub(/[^A-Za-z]/, '')
     self.first_name = self.first_name.gsub(/[^A-Za-z]/, '')
     self.email = self.email.gsub(/[^0-9A-Za-z\.@]/, '')
+    self.inspect
   end
 
   def formatting_name

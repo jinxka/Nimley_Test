@@ -1,0 +1,49 @@
+p#notice = notice
+h1 Import Contacts
+= form_tag import_contacts_path, multipart: true do
+  =file_field_tag :file
+  =submit_tag "Import"
+br/
+h3 Valid Contacts
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Email
+      th
+      th
+      th
+  tbody
+    - @valid_contacts.each do |contact|
+      tr
+        td = contact.first_name
+        td = contact.last_name
+        td = contact.email
+        td = link_to 'Destroy', contact, data: { confirm: 'Are you sure?' }, method: :delete
+br/
+br/
+br/
+h3 Invalid Contacts
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Email
+      th Reason
+      th
+      th
+      th
+      th
+      th
+  tbody
+    - @invalid_contacts.each do |import|
+      tr
+        td = import.first_name
+        td = import.last_name
+        td = import.email
+        td = import.reason
+        td = link_to 'Destroy', import, data: { confirm: 'Are you sure?' }, method: :delete
+br
+  = link_to 'History', history_path

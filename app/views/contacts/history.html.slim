@@ -1,26 +1,40 @@
 h1 History
+br/
+h3 All Valid Contacts
 table
   thead
     tr
       th First name
       th Last name
       th Email
-      th Valid
+      th
+      th
+      th
+  tbody
+    - @all_valid_contacts.each do |contact|
+      tr
+        td = contact.first_name
+        td = contact.last_name
+        td = contact.email
+br/
+h3 All Invalid Contacts
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Email
       th Reason
-      th Import number
-      th
-      th
       th
       th
       th
       th
   tbody
-    - @contacts.each do |contact|
+    - @all_invalid_contacts.each do |contact|
       tr
         td = contact.first_name
         td = contact.last_name
         td = contact.email
-        td = contact.reason.blank? ? true : false
         td = contact.reason
-        td = contact.nbr_import
-  = link_to 'Back', root_path
+
+= link_to 'Back', root_path

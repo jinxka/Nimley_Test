@@ -9,12 +9,13 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @invalid_contacts = Import.last_import.invalid_contact
-    @valid_contacts = Contact.all
+    @invalid_contacts = Contact.last_import.invalid_contact
+    @valid_contacts = Contact.last_import.valid_contact
   end
 
   def history
-    @contacts = Import.all
+    @all_valid_contacts = Contact.valid_contact
+    @all_invalid_contacts = Contact.invalid_contact
   end
   # # POST /contacts
   # # POST /contacts.json

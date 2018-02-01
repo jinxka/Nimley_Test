@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :contacts
-  resources :import
   match '/history', to: 'contacts#history', via: :get
   root to: 'contacts#index'
   resources :contacts do

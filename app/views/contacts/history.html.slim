@@ -1,0 +1,26 @@
+h1 History
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Email
+      th Valid
+      th Reason
+      th Import number
+      th
+      th
+      th
+      th
+      th
+      th
+  tbody
+    - @contacts.each do |contact|
+      tr
+        td = contact.first_name
+        td = contact.last_name
+        td = contact.email
+        td = contact.reason.blank? ? true : false
+        td = contact.reason
+        td = contact.nbr_import
+  = link_to 'Back', root_path
